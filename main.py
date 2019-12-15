@@ -14,16 +14,27 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    if message.author == client.user:
+        return
+    #--character--
     if message.content.startswith('!character make'):
         await message.channel.send(f'{message.author.mention} ' +str(character.make()))
     if message.content.startswith('!character load'):
         index = message.content.replace("!character load ","")
         await message.channel.send(f'{message.author.mention} ' +str(character.load(index)))
+    """
     if message.content.startswith('!help'):
-        await message.channel.send("Dicebot\n!character make - make your character")
+        await message.channel.send("Dicebot\n!character make - 簡単なキャラメイクができます.\n")
+    """
+
     #--dice--
     if message.channel.name in Channels:
-        n, d = map(int,message.content.split('d'))
-        await message.channel.send(f'{message.author.mention} result : '+ str(dice.roll(n,d)))
+        try:
+            n,d = map(int,message.content.split('d'))
+        except ValueError:
+            await message.channel.send(f"{message.author.mention}正しいフォーマットで入力してください.")
+        else:
+            await message.channel.send(f'{message.author.mention} result : '+ str(dice.roll(n,d)))
+        
 
 client.run(os.environ["SECRET_TOKEN"])
