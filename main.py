@@ -4,7 +4,7 @@ from dicebot import *
 client = discord.Client()
 
 PopularDices=['1d100','1d10','3d6','2d6','1d6','1d4','2d3','1d3','1d20','1d30']
-Channels=["Dice","ダイス"]
+Channels=["dice","ダイス"]
 @client.event
 async def on_ready():
     print('Logged in as')
