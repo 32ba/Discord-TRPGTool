@@ -17,7 +17,7 @@ async def on_guild_join(guild):
     await guild.create_text_channel("dice")
     for channel in client.get_all_channels():
         if channel.name in Channels:
-            await channel.send("TRPGToolが追加されました。\n利用できるコマンドは以下のURLを確認してください。\nhttps://github.com/32ba/TRPGTool/README.md")
+            await channel.send("TRPGToolが追加されました。\n利用できるコマンドは以下のURLを確認してください。\nhttps://github.com/32ba/TRPGTool/blob/master/README.md")
 
 @client.event
 async def on_message(message):
@@ -35,7 +35,7 @@ async def on_message(message):
         if message.channel.name in Channels:
 
             if message.content.startswith('!help'):
-                await message.channel.send(f'{message.author.mention} こちらを参照してください。\nhttps://github.com/32ba/TRPGTool/README.md' )
+                await message.channel.send(f'{message.author.mention} こちらを参照してください。\nhttps://github.com/32ba/TRPGTool/blob/master/README.md' )
                 return
 
             try:
@@ -45,7 +45,7 @@ async def on_message(message):
             else:
                 await message.channel.send(f'{message.author.mention} result : '+ str(dice.roll(n,d)))
     except discord.errors.Forbidden:
-        await message.channel.send("権限不足です。\n新しく追加された機能を使う際、Botの再連携が必要な場合があります。\n詳しくは下記のURLを参照してください。\nhttps://github.com/32ba/TRPGTool/README.md")
+        await message.channel.send("権限不足です。\n新しく追加された機能を使う際、Botの再連携が必要な場合があります。\n詳しくは下記のURLを参照してください。\nhttps://github.com/32ba/TRPGTool/blob/master/README.md")
         
 
 client.run(os.environ["SECRET_TOKEN"])
