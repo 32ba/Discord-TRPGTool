@@ -1,7 +1,9 @@
 # TRPGTool(DiceBot)
 ## 使い方
 チャンネル名が"dice"か"ダイス"のチャンネルでこのBotは動作します。
+
 `[ダイスの数]d[ダイスの面の数]`でダイスを振ることができます。
+
 ![How_To_Use_1](https://github.com/32ba/TRPGTool/blob/master/images/howtouse1.png)
 
 ## 追加方法
