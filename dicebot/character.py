@@ -27,5 +27,4 @@ def load(index:str):
         seed = index.replace("D","")
         return make(int(seed))
     else:
-        return "Invaild format! : " + index
-    
+        return "Invaild format! : " + str(index)    
