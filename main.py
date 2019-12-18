@@ -1,9 +1,10 @@
-import asyncio,discord,os
+import asyncio,discord,os,json,requests
 from dicebot import *
 
 client = discord.Client()
 
 Channels=["dice","ダイス"]
+AnalysisURL=os.environ["AnalysisURL"]
 
 @client.event
 async def on_ready():
@@ -18,6 +19,11 @@ async def on_guild_join(guild):
     for channel in client.get_all_channels():
         if channel.name in Channels:
             await channel.send("TRPGToolが追加されました。\n利用できるコマンドは以下のURLを確認してください。\nhttps://github.com/32ba/TRPGTool/blob/master/README.md")
+    requests.post(AnalysisURL,json.dumps({"action":"join", "guildid":f"{guild.id}" }),headers={'Content-Type': 'application/json'})
+
+@client.event
+async def on_guild_remove(guild):
+    requests.post(AnalysisURL,json.dumps({"action":"remove", "guildid":f"{guild.id}" }),headers={'Content-Type': 'application/json'})
 
 @client.event
 async def on_message(message):
