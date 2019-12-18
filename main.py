@@ -15,10 +15,6 @@ async def on_ready():
 
 @client.event
 async def on_guild_join(guild):
-    await guild.create_text_channel("dice")
-    for channel in client.get_all_channels():
-        if channel.name in Channels:
-            await channel.send("TRPGToolが追加されました。\n利用できるコマンドは以下のURLを確認してください。\nhttps://github.com/32ba/TRPGTool/blob/master/README.md")
     requests.post(AnalysisURL,json.dumps({"action":"join", "guildid":f"{guild.id}" }),headers={'Content-Type': 'application/json'})
 
 @client.event
