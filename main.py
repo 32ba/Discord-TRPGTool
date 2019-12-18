@@ -20,14 +20,13 @@ async def on_message(message):
         #--character--
         if message.content.startswith('!character make'):
             await message.channel.send(f'{message.author.mention} ' +str(character.make()))
-            await message.guild.create_text_channel("channelName")
         if message.content.startswith('!character load'):
             index = message.content.replace("!character load ","")
             await message.channel.send(f'{message.author.mention} ' +str(character.load(index)))
 
         #--help--
         if message.content.startswith('!help'):
-            return
+            
 
         #--dice--
         if message.channel.name in Channels:
