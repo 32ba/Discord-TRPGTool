@@ -13,6 +13,13 @@ async def on_ready():
     print('------')
 
 @client.event
+async def on_guild_join(guild):
+    await guild.create_text_channel("dice")
+    for channel in client.get_all_channels():
+        if channel.name in Channels:
+            await channel.send("TRPGToolが追加されました。\n利用できるコマンドは以下のURLを確認してください。\nhttps://github.com/32ba/TRPGTool/README.md")
+
+@client.event
 async def on_message(message):
     if message.author == client.user:
             return
@@ -24,12 +31,13 @@ async def on_message(message):
             index = message.content.replace("!character load ","")
             await message.channel.send(f'{message.author.mention} ' +str(character.load(index)))
 
-        #--help--
-        if message.content.startswith('!help'):
-            
-
         #--dice--
         if message.channel.name in Channels:
+
+            if message.content.startswith('!help'):
+                await message.channel.send(f'{message.author.mention} こちらを参照してください。\nhttps://github.com/32ba/TRPGTool/README.md' )
+                return
+
             try:
                 n,d = map(int,message.content.split('d'))
             except ValueError:

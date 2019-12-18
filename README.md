@@ -9,7 +9,7 @@
 ## 追加方法
 以下のURLから、私(32ba)が管理しているBotを追加できます。
 
-https://discordapp.com/api/oauth2/authorize?client_id=506455898835648512&permissions=27648&scope=bot
+https://discordapp.com/api/oauth2/authorize?client_id=506455898835648512&permissions=60432&scope=bot
 
 権限については、その時実装されている機能に必要な最小限のものを有効にするようにしているので、新しく追加された機能を利用する際にBotの再連携が必要となる場合があります。
 
