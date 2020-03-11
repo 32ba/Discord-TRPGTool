@@ -25,6 +25,15 @@ async def on_guild_remove(guild):
 async def on_message(message):
     if message.author == client.user:
             return
+
+    if str(message.channel).startswith("Direct Message with"):
+        canDiceroll = True
+    elif message.channel.name in Channels:
+        canDiceroll = True
+    else:
+        canDiceroll = False
+
+
     try:
         #--character--
         if message.content.startswith('!character make'):
@@ -34,7 +43,7 @@ async def on_message(message):
             await message.channel.send(f'{message.author.mention} ' +str(character.load(index)))
 
         #--dice--
-        if message.channel.name in Channels:
+        if canDiceroll == True:
 
             if message.content.startswith('!help'):
                 await message.channel.send(f'{message.author.mention} こちらを参照してください。\nhttps://github.com/32ba/TRPGTool/blob/master/README.md' )
